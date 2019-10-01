@@ -20,6 +20,9 @@ namespace ListifyAPI.Controllers
         [HttpGet]
         public IActionResult Get(int start, int end, int index)
         {
+            if (index > (end - start) || index < 0)
+                return BadRequest("Index is out of range");
+
             var myList = new ListiFy(start, end);
 
             return Ok(myList[index]);
